@@ -1,31 +1,30 @@
-import { ReactNode, memo } from "react";
+import { ReactNode, memo, useEffect, useState } from "react";
 import Styles from './Pagination.module.css';
+import Image from "next/image";
+import s from './Pagination.module.css'
 
 interface ModalType {
     children?: ReactNode;
-    textTask:{
-        id: number;
-        text: string;
-        time: string;
-        performance: boolean;
-    }[];
-    setTextTask: (obj:{ id: number; text: string; time: string; performance:boolean}[]) => void;
+    textTask:number;
+    count:number;
+    setCount:(obj:number)=>void;
   }
 
 export default function Pagination (props: ModalType) {
-    const count = 0;
-    const chunkSize = 5;
-    const res = [];
-    for (let i = 0; i < props.textTask.length; i += chunkSize) {
-        const chunk = props.textTask.slice(i, i + chunkSize);
-        res.push(chunk);
-    }
-    console.log(res)
-    console.log(res[count])
+
+
     return (
         <>
-            <button onClick={() => {(count-1);console.log(count)}}>-</button>
-            <button onClick={() => count+1}>+</button>
+                    <div className={s.pagination}>
+                            <button onClick={() => props.setCount(props.count-1<0? props.count:props.count-1)}>
+                                <Image src='1695739192.svg' width={25} height={25} alt='a' className={s.revers}/>
+                            </button>
+                            <div className={s.count}>{props.count+1}</div>
+                            <button onClick={() => props.setCount( props.count+1 > Math.floor(props.textTask/5) ? Math.floor(props.textTask/5):props.count+1)} >
+                                <Image src='1695739192.svg' width={25} height={25} alt='b' />
+                            </button>
+                    </div>
+                        
         </>
     )
 }

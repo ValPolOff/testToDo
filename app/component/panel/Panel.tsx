@@ -13,6 +13,7 @@ import ModalSave from "../Modal/ModalSave";
 import PopUpSort from "../PopUpSort/PopUpSort";
 import ModalDelete from "../Modal/ModalDelete";
 import Pagination from "../Pagination/Pagination";
+import PopUp from "../PopUp/PopUp";
 
 
 
@@ -24,11 +25,11 @@ export default function Panel() {
     const [textTask, setTextTask] = useState([
         {id:1, text:"Task 1", time: '12:30:00', performance:false},
         {id:2, text:"Task 2", time: '12:10:00', performance:false},
-        {id:2, text:"Task 2", time: '12:10:00', performance:false},
-        {id:2, text:"Task 2", time: '12:10:00', performance:false},
-        {id:2, text:"Task 2", time: '12:10:00', performance:false},
-        {id:2, text:"Task 2", time: '12:10:00', performance:false},
-        {id:2, text:"Task 2", time: '12:10:00', performance:false},
+        {id:2, text:"Task 3", time: '12:10:00', performance:false},
+        {id:2, text:"Task 4", time: '12:10:00', performance:false},
+        {id:2, text:"Task 5", time: '12:10:00', performance:false},
+        {id:2, text:"Task 6", time: '12:10:00', performance:false},
+        {id:2, text:"Task 7", time: '12:10:00', performance:false},
     ]);
     //-------------
     //useEffect(() => {setTextTask})
@@ -92,6 +93,8 @@ export default function Panel() {
 
                 
                 <div className={s.text}>
+
+                    
                     <div className={s.pagination}>
                             <button onClick={() => setCount(count-1<0? count:count-1)}>
                                 <Image src='1695739192.svg' width={25} height={25} alt='a' className={s.revers}/>
@@ -101,11 +104,15 @@ export default function Panel() {
                                 <Image src='1695739192.svg' width={25} height={25} alt='b' />
                             </button>
                     </div>
-                        
                         {   
                             sort === 1 ? (textTask.filter((e)=>e.performance===false).slice(0+4*count,5+4*count).map((text1,index)=>{ 
+                                
                                 return (
-                                    <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />)})
+                                    
+                                   
+                                    <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />
+                                    
+                                    )})
                             ) : sort === 2 ? (textTask.filter((e)=>e.performance===true).slice(0+4*count,5+4*count).map((text1,index)=>{
                                 return (
                                     <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />)})
@@ -125,6 +132,7 @@ export default function Panel() {
                 </div>
             
             </div>
+            
             <PopUpSort isOpen={isOpen} toggle={toggle} name={setName} value={value} task={setTextTask} objTask = {textTask} sort={sort} setSort={setSort}/>
             <ModalSave isOpen={isOpen} toggle={toggle} task={setTextTask} objTask = {textTask} value={value}/>
         </div>

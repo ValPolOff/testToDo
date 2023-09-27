@@ -33,14 +33,14 @@ export default function ModalDelete (props: ModalType) {
     return (
         <>
           {props.isOpen && props.value == '2' && (
-            <div className={s.modalOverlay} onClick={props.toggle}>
+            <div className={s.modalOverlay} onClick={() => props.toggle()}>
               <div onClick={(e) => e.stopPropagation()} className={s.modalBox}>
                 {props.children}
                 <div>
                   <div className={s.h1}>Delete task</div>
                   <span className={s.areYou}>Are you sure about deleting this task?</span>
                   <div className={s.blockH1}>
-                    <button className={s.delete} onClick={() => {props.setObjTask(DeleteTask())}}>
+                    <button className={s.delete} onClick={() => {props.setObjTask(DeleteTask()),props.toggle()}}>
                       <Image alt='okTask' src='material-symbols_today (1).svg' width={25} height={25} />
                       Delete
                     </button>

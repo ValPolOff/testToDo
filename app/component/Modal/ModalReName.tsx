@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import s from './Modal.module.css'
 import Image from "next/image";
 import useModal from "@/app/hook/useModal";
@@ -35,21 +35,27 @@ export default function ModalReName (props: ModalType) {
       
     }
       const [errorText, setErrorText] = useState('')
+      useEffect(()=>{
+        document.addEventListener('keydown', function(event) { if (event.code == "Enter") {taskN.length === 0 ? setErrorText('') : (pushText(),setErrorText(''),props.toggle(),setTask('')) }});
+      },[taskN])
+      useEffect(()=>{
+        document.addEventListener('keydown', function(event) { if (event.code == "Escape") {taskN.length === 0 ? setErrorText('') : (props.toggle(),setErrorText(''),setTask(''))}});
+      },[taskN])
     return (
         <>
           {props.isOpen && props.value === '1' && (
-            <div className={s.modalOverlay} onClick={() => {props.toggle(),setErrorText('')}}>
+            <div className={s.modalOverlay} onClick={() => {props.toggle(),setErrorText(''),setTask('')}}>
               <div onClick={(e) => e.stopPropagation()} className={s.modalBox}>
                 {props.children}
                 <div>
                   <div className={s.h1}>Rename task</div>
-                  <input className={s.interTask} placeholder="    Enter text..." value={taskN} onChange={(event) => setTask(event.target.value)}></input>
+                  <input className={s.interTask} placeholder="    Enter text..." value={taskN} onChange={(event) => setTask(event.target.value)} autoFocus></input>
                   <div className={s.blockH1}>
                     <button className={s.save} onClick={() => {taskN.length === 0 ? setErrorText('You have not entered text') : (pushText(),setErrorText(''),props.toggle(),setValue(''))}}>
                       <Image alt='okTask' src='Check_ring.svg' width={25} height={25} />
                       Save
                     </button>
-                    <button className={s.close} onClick={() => {props.toggle(),setErrorText('')}}>
+                    <button className={s.close} onClick={() => {props.toggle(),setErrorText(''),setTask('')}}>
                       <Image alt='noTask' src='material-symbols_today.svg' width={25} height={25} />
                       Close
                     </button>

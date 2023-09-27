@@ -38,8 +38,8 @@ export default function PopUp (props:ModalType) {
         <div onClick={props.toggle} className={s.modalOverlay}>
           
           <div /*onClick={(e) => e.stopPropagation()}*/ className={s.modalBox3}>
-            {props.children}
-            <div >
+            
+            <div>
               <button onClick={() => { toggle();setValue('1')}}>
                 <Image src='Group (1).svg' width={17} height={17} alt='yesAll' />
               </button>
