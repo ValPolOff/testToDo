@@ -1,0 +1,65 @@
+.header {
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    
+    
+    /*position: absolute;*/
+    width: 39%;
+    height: 5%;
+
+    background-color: aliceblue;
+    border-radius: 10px;
+
+    position: fixed;
+    right: 10%;
+    top: 33%;
+}
+
+.userName {
+    /*position: absolute;*/
+    width: 600px;
+    height: 19px;
+    /*left: 317.5px;
+    top: 14px;*/
+
+    font-family: 'Roboto';
+    font-style: normal;
+    /*font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;*/
+    /* identical to box height */
+
+    /* primary */
+    color: #9333EA;
+}
+
+.toDo {
+    /*position: absolute;*/
+    width: 600px;
+    height: 19px;
+    /*left: 10px;
+    top: 14px;*/
+
+    font-family: 'Roboto';
+    font-style: normal;
+    /*font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;*/
+    /* identical to box height */
+
+    /* primary */
+    color: #9333EA;
+}
+
+.imageProf {
+     position: absolute;
+     width: 35vw;
+     height: 10vh;
+     left: 600px;
+     top: 14px;
+
+}
