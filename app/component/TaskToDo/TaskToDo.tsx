@@ -46,8 +46,8 @@ export default function TaskToDo (props:ModalType) {
         /*const Ad = props.objTask.map((e,i)=>{ i === props.index ? e.performance===true ? e.performance=false : e.performance=true : e.performance ;
         return e
         } ) */  
-            console.log(props.index)    
-            console.log(props.text1)
+            //console.log(props.index)    
+            //console.log(props.text1)
             //props.setObjTask(props.objTask)
     }
         //const TaskName = 
@@ -55,6 +55,7 @@ export default function TaskToDo (props:ModalType) {
         return (
             <>
             <div key={props.index}>
+                <div className={s.t}>
                     <div className={s.task}>
                         <div className={s.task1}>
                             <button onClick={() => {setDoIt(doIt ? false: true),F()}}>  
@@ -71,13 +72,22 @@ export default function TaskToDo (props:ModalType) {
                             
                         </div>
 
+               
+                         
+                            
+                                <PopUp isOpen={isOpen} toggle={toggle} deleteIndex={props.index} setObjTask={props.setObjTask} objTask = {props.objTask} index={props.index}/>
+                            
                         
+
+                    </div>
+    <div className={s.t}>
+     </div>
                     
                     </div>
-                    <PopUp isOpen={isOpen} toggle={toggle} deleteIndex={props.index} setObjTask={props.setObjTask} objTask = {props.objTask} index={props.index}/>
-                    <div className={s.popup}>
+                   
                         
-                    </div>
+                         
+                        
                     
             </div>
             

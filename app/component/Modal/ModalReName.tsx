@@ -35,12 +35,25 @@ export default function ModalReName (props: ModalType) {
       
     }
       const [errorText, setErrorText] = useState('')
-      useEffect(()=>{
+      
+      /*useEffect(()=>{
         document.addEventListener('keydown', function(event) { if (event.code == "Enter") {taskN.length === 0 ? setErrorText('') : (pushText(),setErrorText(''),props.toggle(),setTask('')) }});
       },[taskN])
       useEffect(()=>{
         document.addEventListener('keydown', function(event) { if (event.code == "Escape") {taskN.length === 0 ? setErrorText('') : (props.toggle(),setErrorText(''),setTask(''))}});
-      },[taskN])
+      },[taskN])*/
+
+      const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+          console.log('Int')
+          props.objTask.map((e)=>e.text).includes(taskN) || taskN.replaceAll(' ','')==='' || taskN.length === 0 ? setErrorText('You did not enter text or such a task already exists') : (pushText(),setErrorText(''),props.toggle(),setTask(''))
+        } else if (event.key === 'Escape') {
+          console.log('Esc')
+          props.toggle(),setErrorText(''),setTask('')
+        }
+      };
+
+
     return (
         <>
           {props.isOpen && props.value === '1' && (
@@ -49,9 +62,9 @@ export default function ModalReName (props: ModalType) {
                 {props.children}
                 <div>
                   <div className={s.h1}>Rename task</div>
-                  <input className={s.interTask} placeholder="    Enter text..." value={taskN} onChange={(event) => setTask(event.target.value)} autoFocus></input>
+                  <input onKeyDown={handleKeyDown} className={s.interTask} placeholder="Enter text..." value={taskN} onChange={(event) => setTask(event.target.value)} autoFocus></input>
                   <div className={s.blockH1}>
-                    <button className={s.save} onClick={() => {taskN.length === 0 ? setErrorText('You have not entered text') : (pushText(),setErrorText(''),props.toggle(),setValue(''))}}>
+                    <button className={s.save} onClick={() => {props.objTask.map((e)=>e.text).includes(taskN) || taskN.replaceAll(' ','')==='' || taskN.length === 0 ? setErrorText('You did not enter text or such a task already exists') : (pushText(),setErrorText(''),props.toggle(),setValue(''))}}>
                       <Image alt='okTask' src='Check_ring.svg' width={25} height={25} />
                       Save
                     </button>
