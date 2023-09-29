@@ -50,7 +50,7 @@ export default function ModalSave (props: ModalType) {
   }*/
     let pushText = () => {
       //([...props.objTask, {id:props.objTask.length+1, text:taskN, time:'12:00:00', performance:props.objTask[].performance}])
-      console.log([...props.objTask, {id:props.objTask.length+1, text:taskN, time:'12:00:00', performance:props.objTask[props.objTask.length-1].performance=false}])
+      //console.log([...props.objTask, {id:props.objTask.length+1, text:taskN, time:'12:00:00', performance:props.objTask[props.objTask.length-1].performance=false}])
       props.task([...props.objTask, {id:props.objTask.length+1, text:taskN, time:'12:00:00', performance:props.objTask[props.objTask.length-1].performance=false}])
     }
       const [errorText, setErrorText] = useState('')
@@ -66,10 +66,10 @@ export default function ModalSave (props: ModalType) {
     
       const handleKeyDown = (event:any) => {
         if (event.key === 'Enter') {
-          console.log('Int')
+          //console.log('Int')
           props.objTask.map((e)=>e.text).includes(taskN) || taskN.replaceAll(' ','')==='' || taskN.length === 0 ? setErrorText('You did not enter text or such a task already exists') : (pushText(),setErrorText(''),props.toggle(),setTask(''))
         } else if (event.key === 'Escape') {
-          console.log('Esc')
+          //console.log('Esc')
           props.toggle(),setErrorText(''),setTask('')
         }
       };

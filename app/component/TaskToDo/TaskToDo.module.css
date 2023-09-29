@@ -20,6 +20,19 @@
     
 }
 
+.tt {
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    text-align: right;
+    width: 30%;
+    height: 1%;
+    gap: 15%;
+    position:relative;
+    top:15%;
+    right: -91%;
+}
+
 .task1 {
     display: flex;
     align-items: center;

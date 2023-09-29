@@ -69,28 +69,23 @@ export default function TaskToDo (props:ModalType) {
                             <button onClick={() => { toggle(); /*setValue('3'); /*setDoDont(true)*/ }}>
                                 <Image alt='settings'  src='Vector (2).svg' width={4} height={4} />
                             </button>
-                            
+     
                         </div>
+                  
 
-               
-                         
-                            
-                                <PopUp isOpen={isOpen} toggle={toggle} deleteIndex={props.index} setObjTask={props.setObjTask} objTask = {props.objTask} index={props.index}/>
-                            
-                        
 
                     </div>
-    <div className={s.t}>
-     </div>
+                    <div className={s.tt}>
+                     <PopUp isOpen={isOpen} toggle={toggle} deleteIndex={props.index} setObjTask={props.setObjTask} objTask = {props.objTask} index={props.index}/>
+</div>
                     
                     </div>
                    
-                        
-                         
-                        
+         
                     
             </div>
-            
+                                                                  
+                
             </>
         ) 
 }

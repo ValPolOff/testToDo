@@ -36,6 +36,8 @@ export default function Panel() {
         {id:11, text:"Task 11", time: '12:10:00', performance:false},
         {id:12, text:"Task 12", time: '12:10:00', performance:false},
         {id:13, text:"Task 13", time: '12:10:00', performance:false},
+        {id:12, text:"Task 12", time: '12:10:00', performance:false},
+        {id:13, text:"Task 13", time: '12:10:00', performance:false},
         
     ]);
     //-------------
@@ -46,7 +48,7 @@ export default function Panel() {
     const [name,setName] = useState('All');
     const [sort,setSort] = useState(3)
     const [count,setCount] = useState(0)
-
+    const [countPag,setCountPag] = useState(0)
     const [sortDataValue,setsortDataValue] = useState(false)
     const sortData = () =>{
         sortDataValue === true ? setsortDataValue(false) : setsortDataValue(true);
@@ -55,42 +57,23 @@ export default function Panel() {
         console.log(a)
         setTextTask(a)*/
     }
- 
+    
     const Today = '12:10:00'
     useEffect(()=>{
-        console.log('OK')
-        
+        //console.log('OK')
+        console.log(textTask,'1')
         setTextTask(textTask)
     },[textTask])
     
-    /*function sliceIntoChunks() {
-        
-        const chunkSize = 10;
-        const res = [];
-        for (let i = 0; i < textTask.length; i += chunkSize) {
-            const chunk = textTask.slice(i, i + chunkSize);
-            res.push(chunk);
-        }
-        console.log(res)
-        return res;
-    }*/
-
-    /*const handleKeyDown = (event:any) => {
-        if (event.key === 'Enter') {
-          console.log('Int')
-          toggle();setValue('1')
-        } 
-      };*/
-
         const [valuePage,setValuePage] = useState('')
         const handleKeyDown = (event:any) => {
             if (event.key === 'Enter') {
-            console.log('Ent')
-            console.log(+valuePage > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5) : +valuePage-1)
+            //console.log('Ent')
+            //console.log(+valuePage > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5) : +valuePage-1)
             setCount((+valuePage > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5) : +valuePage-1 < 0 ? +valuePage:+valuePage-1))
 
             } else if (event.key === 'Escape') {
-            console.log('Esc')
+            //console.log('Esc')
             setValuePage('')
             
             }
@@ -103,7 +86,7 @@ export default function Panel() {
         setCount(( count+1 >= Math.floor(textTask.length/5) ? Math.floor(textTask.length/5):count+1))
 
         } else if (event.key === 'ArrowLeft') {
-        console.log('Esc')
+        //console.log('Esc')
         
         setCount(count-1<0? count:count-1)
         
@@ -114,51 +97,48 @@ export default function Panel() {
         console.log(sort)
         setSort(sort)
       },[sort])
-
+      //console.log(count+1 > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5):count+1)
+      //console.log(count + 'count')
     return (
         <div>
             <div className={s.panel}>
                 <div>
-                <button className={s.panelToday} onClick={()=>{setSort(5)}}>
-                    <Image alt='today' src='Vector.svg' width={22} height={22} />
-                    <div>Today</div>
-                </button>
-
-                
-                <button  className={value === '2' ? s.panelAll2 : s.panelAll} onClick={() => {toggle();setValue('2')}}>
-                    {value === '2' ? (<Image src='done 1 (1).svg' width={25} height={25} alt='yes'/>) : (<Image alt='all' src='done 1.svg' width={27} height={27} />) }
-                    {name}
-                </button>
-                
-                <button className={s.panelData} onClick={() => {sortData(),sort === 4 ? setSort(6) : setSort(4),setsortDataValue(true)}}>
-                    <Image alt='data' src='arrows 1.svg' width={27} height={27} />
-                    Data
-                </button>
-                <button className={s.panelAddTask} onClick={() => {toggle();setValue('1')}} autoFocus>
-                    <Image alt='Add task' src='Vector (1).svg' width={25} height={25} />
-                    Add task
-                </button>
+                    <button className={s.panelToday} onClick={()=>{setSort(5)}}>
+                        <Image alt='today' src='Vector.svg' width={22} height={22} />
+                        <div>Today</div>
+                    </button>
+                    <button  className={value === '2' ? s.panelAll2 : s.panelAll} onClick={() => {toggle();setValue('2')}}>
+                        {value === '2' ? (<Image src='done 1 (1).svg' width={25} height={25} alt='yes'/>) : (<Image alt='all' src='done 1.svg' width={27} height={27} />) }
+                        {name}
+                    </button>
+                    <button className={s.panelData} onClick={() => {sortData(),sort === 4 ? setSort(6) : setSort(4),setsortDataValue(true)}}>
+                        <Image alt='data' src='arrows 1.svg' width={27} height={27} />
+                        Data
+                    </button>
+                    <button className={s.panelAddTask} onClick={() => {toggle();setValue('1')}} autoFocus>
+                        <Image alt='Add task' src='Vector (1).svg' width={25} height={25} />
+                        Add task
+                    </button>
                 </div>
 
-                
                 <div className={s.text}>
-
                     
-                    {textTask.length === 1 ? (<></>) : (<div className={s.pagination}>
+                    {textTask.length === 1 ? (<></>) : 
+                    (<div className={s.pagination}>
                             <button onClick={() => setCount(count-1<0? count:count-1)} onKeyDown={handleKeyDownPag}>
                                 <Image src='1695739192.svg' width={25} height={25} alt='a' className={s.revers}/>
                             </button>
-                            <div className={s.count}>{count+1}</div>
+                            <div className={s.count}>{count+1 === Math.floor(textTask.length/5) ? Math.floor(textTask.length/5) : count+1}</div>
                             <button onKeyDown={handleKeyDownPag} onClick={() => setCount( count+1 >= Math.floor(textTask.length/5) ? Math.floor(textTask.length/5):count+1)} >
                                 <Image src='1695739192.svg' width={25} height={25} alt='b' />
                             </button>
                     </div>)}
+                        
                         {   
                             sort === 1 ? (textTask.filter((e)=>e.performance===false).slice(0+5*count,5+5*count).map((text1,index)=>{ 
                                 
                                 return (
-                                    
-                                   
+                                
                                     <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />
                                     
                                     )})
@@ -176,8 +156,8 @@ export default function Panel() {
                                     <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />)})
                             ):(
                                 textTask.slice(0+5*count,5+5*count).map((text1,index)=>{
-                                    return (
-                                        <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />)})
+                                    return ( 
+                                        <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} /> )})
                             )
                         }
                         
