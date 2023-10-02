@@ -61,7 +61,7 @@ export default function TaskToDo (props:ModalType) {
                             <button onClick={() => {setDoIt(doIt ? false: true),F()}}>  
                                 {props.text1.performance===true ? (<Image alt='ok' src='Check_ring.svg' width={25} height={25} />):(<Image alt='ok' src='Group.svg' width={25} height={25} />)}
                             </button>
-                            {<div>{props.text1.text.length > 20 ? props.text1.text.substring(0,20) + '...': props.text1.text}</div>}
+                            {<div>{props.text1.text.length > 15 ? props.text1.text.substring(0,15) + '...': props.text1.text}</div>}
                         </div>
 
                         <div className={s.task2}>
@@ -77,7 +77,7 @@ export default function TaskToDo (props:ModalType) {
                     </div>
                     <div className={s.tt}>
                      <PopUp isOpen={isOpen} toggle={toggle} deleteIndex={props.index} setObjTask={props.setObjTask} objTask = {props.objTask} index={props.index}/>
-</div>
+                    </div>
                     
                     </div>
                    

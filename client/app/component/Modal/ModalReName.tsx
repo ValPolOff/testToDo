@@ -29,6 +29,7 @@ export default function ModalReName (props: ModalType) {
 
         const A = [...props.objTask];
         A[props.index].text = taskN
+        console.log(props.index)
         
         props.task(A)
       //([...props.objTask, {id:props.objTask.length+1, text:taskN, time:'12:00:00', performance:props.objTask[].performance}])

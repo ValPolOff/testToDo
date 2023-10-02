@@ -14,7 +14,6 @@ import PopUpSort from "../PopUpSort/PopUpSort";
 import ModalDelete from "../Modal/ModalDelete";
 import Pagination from "../Pagination/Pagination";
 import PopUp from "../PopUp/PopUp";
-import SortData from "./SortData";
 
 
 
@@ -53,10 +52,15 @@ export default function Panel() {
     const [sortDataValue,setsortDataValue] = useState(false)
     const sortData = () =>{
         sortDataValue === true ? setsortDataValue(false) : setsortDataValue(true);
+        /*const a = textTask.sort((a,b)=>
+        sortDataValue === true ? a.time>b.time ? 1:-1 : b.time>a.time ? 1:-1)
+        console.log(a)
+        setTextTask(a)*/
     }
     
     const Today = '12:10:00'
     useEffect(()=>{
+        //console.log('OK')
         console.log(textTask,'1')
         setTextTask(textTask)
     },[textTask])
@@ -64,14 +68,18 @@ export default function Panel() {
         const [valuePage,setValuePage] = useState('')
         const handleKeyDown = (event:any) => {
             if (event.key === 'Enter') {
+            //console.log('Ent')
+            //console.log(+valuePage > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5) : +valuePage-1)
             setCount((+valuePage >= Math.ceil(textTask.length/5) ? Math.ceil(textTask.length/5)-1 : +valuePage-1 < 0 ? +valuePage:+valuePage-1))
+
             } else if (event.key === 'Escape') {
+            //console.log('Esc')
             setValuePage('')
             
             }
       };
 
-     const handleKeyDownPag = (event:any) => {
+      const handleKeyDownPag = (event:any) => {
         if (event.key === "ArrowRight") {
         console.log("ArrowRight")
         //console.log(+valuePage > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5) : +valuePage-1)
@@ -89,6 +97,8 @@ export default function Panel() {
         console.log(sort)
         setSort(sort)
       },[sort])
+      //console.log(count+1 > Math.floor(textTask.length/5) ? Math.floor(textTask.length/5):count+1)
+      //console.log(count + 'count')
     return (
         <div>
             <div className={s.panel}>
@@ -123,7 +133,6 @@ export default function Panel() {
                                 <Image src='1695739192.svg' width={25} height={25} alt='b' />
                             </button>
                     </div>)}
-                    
                         
                         {   
                             sort === 1 ? (textTask.filter((e)=>e.performance===false).slice(0+5*count,5+5*count).map((text1,index)=>{ 
@@ -134,28 +143,8 @@ export default function Panel() {
                                     
                                     )})
                             ) : sort === 2 ? (textTask.filter((e)=>e.performance===true).slice(0+5*count,5+5*count).map((text1,index)=>{
- 
-                                /*(function (){
-                                    setCount(count+1 >= Math.ceil(textTask.filter((e)=>e.performance===true).length/5) ? Math.ceil(textTask.filter((e)=>e.performance===true).length/5)-1:count+1)
-                                })()*/
                                 return (
-
-                                    <>
-                                    {/*textTask.length === 1 ? (<></>) : 
-                                            (<div className={s.pagination}>
-                                            <button onClick={() => setCount(count-1<0? count:count-1)} onKeyDown={handleKeyDownPag}>
-                                                <Image src='1695739192.svg' width={25} height={25} alt='a' className={s.revers}/>
-                                            </button>
-                                            <div className={s.count}>{count+1 === textTask.filter((e)=>e.performance===true).length ? textTask.filter((e)=>e.performance===true).length : count+1}</div>
-                                            <button onKeyDown={handleKeyDownPag} onClick={() => setCount( count+1 >= Math.ceil(textTask.filter((e)=>e.performance===true).length/5) ? Math.ceil(textTask.filter((e)=>e.performance===true).length/5)-1:count+1)} >
-                                                <Image src='1695739192.svg' width={25} height={25} alt='b' />
-                                            </button>
-                                            </div>)*/}
-                                    
-                                    <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />
-                                    </>
-                                    )})
-
+                                    <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />)})
                             ) : sort === 4 ? (textTask.sort((a,b)=>b.time>a.time ? 1:-1).slice(0+5*count,5+5*count).map((text1,index)=>{
                                 return (
                                     <TaskToDo index={index} text1={text1} setObjTask={setTextTask} objTask = {textTask} />)})
@@ -173,10 +162,8 @@ export default function Panel() {
                         }
                         
                 </div>
-                
-           <div className={s.inputPageTitle}>Enter page</div>
-            <input className={s.inputPage} onKeyDown={handleKeyDown} value={+valuePage >= Math.ceil(textTask.length/5)+1 ? Math.ceil(textTask.length/5) : +valuePage < 1 ? '' : +valuePage} onChange={(event) => setValuePage(event.target.value)}></input> 
-            
+                <div className={s.inputPageTitle}>Enter page</div>
+            <input className={s.inputPage} onKeyDown={handleKeyDown} value={+valuePage >= Math.ceil(textTask.length/5)+1 ? Math.ceil(textTask.length/5) : +valuePage < 1 ? '' : +valuePage} onChange={(event) => setValuePage(event.target.value)}></input>
             </div>
             
             <PopUpSort isOpen={isOpen} toggle={toggle} name={setName} value={value} task={setTextTask} objTask = {textTask} sort={sort} setSort={setSort}/>
