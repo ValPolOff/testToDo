@@ -17,6 +17,16 @@ interface ModalType {
 
   }
 export default function SortData (props:ModalType) {
+
+    const Today = '12:10:00'
+    let page:number;
+    props.sort === 1 ? page = Math.ceil(props.textTask.filter((e)=>e.performance===false).length/5): 
+    props.sort === 2 ? page = Math.ceil(props.textTask.filter((e)=>e.performance===true).length/5):
+    props.sort === 4 ? page = Math.ceil(props.textTask.sort((a,b)=>b.time>a.time ? 1:-1).length/5):
+    props.sort === 6 ? page = Math.ceil(props.textTask.sort((a,b)=>a.time>b.time ? 1:-1).length/5):
+    props.sort === 5 ? page = Math.ceil(props.textTask.filter((e)=>e.time === Today).length/5):
+    page = Math.ceil(props.textTask.length/5);
+
     const handleKeyDownPag = (event:any) => {
         if (event.key === "ArrowRight") {
         console.log("ArrowRight")
@@ -29,20 +39,13 @@ export default function SortData (props:ModalType) {
   const [valuePage,setValuePage] = useState('')
   const handleKeyDown = (event:any) => {
       if (event.key === 'Enter') {
-      props.setCount((+valuePage >= Math.ceil(props.textTask.length/5) ? Math.ceil(props.textTask.length/5)-1 : +valuePage-1 < 0 ? +valuePage:+valuePage-1))
+      props.setCount((+valuePage >= page ? page-1 : +valuePage-1 < 0 ? +valuePage:+valuePage-1))
       } else if (event.key === 'Escape') {
       setValuePage('')
       
       }
 };
-    const Today = '12:10:00'
-    let page:number;
-    props.sort === 1 ? page = Math.ceil(props.textTask.filter((e)=>e.performance===false).length/5): 
-    props.sort === 2 ? page = Math.ceil(props.textTask.filter((e)=>e.performance===true).length/5):
-    props.sort === 4 ? page = Math.ceil(props.textTask.sort((a,b)=>b.time>a.time ? 1:-1).length/5):
-    props.sort === 6 ? page = Math.ceil(props.textTask.sort((a,b)=>a.time>b.time ? 1:-1).length/5):
-    props.sort === 5 ? page = Math.ceil(props.textTask.filter((e)=>e.time === Today).length/5):
-    page = Math.ceil(props.textTask.length/5);
+
     
     return (
         <div>

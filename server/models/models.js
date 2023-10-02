@@ -1,3 +1,5 @@
+"use strict"
+
 const sequelize = require('../db')
 const {DataTypes} = require(sequelize)
 
@@ -32,3 +34,11 @@ const Post = sequelize.define('post',{
         defaultValue: false},
     time: {type:DataTypes.STRING},
 })
+
+User.hasMany(Post)
+Post.belongsTo(User)
+
+module.exports={
+    User,
+    Post,
+}

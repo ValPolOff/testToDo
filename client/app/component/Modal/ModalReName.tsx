@@ -27,9 +27,15 @@ export default function ModalReName (props: ModalType) {
 
     let pushText = () => {
 
-        const A = [...props.objTask];
-        A[props.index].text = taskN
-        console.log(props.index)
+        //const A = [...props.objTask];
+        //A[props.index].text = taskN
+        //console.log( A.find((e)=>e.id === props.index))
+        //console.log( A.map((e)=>{e.id === props.index ? e.text=taskN: e.text}))
+        const A = [...props.objTask].map((e)=>{
+          e.id === props.index ? e.text=taskN: e.text
+          return e
+        })
+        //console.log(props.index)
         
         props.task(A)
       //([...props.objTask, {id:props.objTask.length+1, text:taskN, time:'12:00:00', performance:props.objTask[].performance}])

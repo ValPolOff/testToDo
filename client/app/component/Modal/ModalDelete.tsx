@@ -27,7 +27,13 @@ export default function ModalDelete (props: ModalType) {
     
     const DeleteTask = () => {
       const obj = [...props.objTask];
-      obj.splice(props.deleteIndex,1);
+      const indexX = [...props.objTask].findIndex(e=>e.id===props.deleteIndex)
+      obj.splice(indexX,1);
+      /*[...props.objTask].map((e)=>{
+        e.id === props.deleteIndex ? obj.splice(props.deleteIndex,1):obj;
+        //console.log(e.id === props.deleteIndex ? obj.splice(props.deleteIndex,1):obj)
+        console.log()
+      })*/
       return obj
     }
     return (

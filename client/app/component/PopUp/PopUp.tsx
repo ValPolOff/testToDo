@@ -51,7 +51,7 @@ export default function PopUp (props:ModalType) {
            
         </div>
       )}
-       <ModalDelete isOpen={isOpen} toggle={toggle} deleteIndex={props.deleteIndex} setObjTask={props.setObjTask} objTask = {props.objTask} value={value}/>
+       <ModalDelete isOpen={isOpen} toggle={toggle} deleteIndex={props.index} setObjTask={props.setObjTask} objTask = {props.objTask} value={value}/>
        <ModalReName isOpen={isOpen} toggle={toggle} task={props.setObjTask} objTask = {props.objTask} value={value} index={props.index}/>
     </>
   )
