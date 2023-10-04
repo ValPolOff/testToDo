@@ -112,7 +112,7 @@ export default function Panel() {
                 </div>
 
                 <div className={s.text}>
-                    
+                <SortData count={count} setCount={setCount} textTask={textTask} sort={sort}/>
                     {/*textTask.length === 1 ? (<></>) : 
                     (<div className={s.pagination}>
                             <button onClick={() => setCount(count-1<0? count:count-1)} onKeyDown={handleKeyDownPag}>
@@ -178,7 +178,7 @@ export default function Panel() {
             <input className={s.inputPage} onKeyDown={handleKeyDown} value={+valuePage >= Math.ceil(textTask.length/5)+1 ? Math.ceil(textTask.length/5) : +valuePage < 1 ? '' : +valuePage} onChange={(event) => setValuePage(event.target.value)}></input> 
                     */}
             </div>
-            <SortData count={count} setCount={setCount} textTask={textTask} sort={sort}/>
+            
             <PopUpSort isOpen={isOpen} toggle={toggle} name={setName} value={value} task={setTextTask} objTask = {textTask} sort={sort} setSort={setSort}/>
             <ModalSave isOpen={isOpen} toggle={toggle} task={setTextTask} objTask = {textTask} value={value}/>
         </div>

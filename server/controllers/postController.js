@@ -13,13 +13,17 @@ class PostController {
     }
     async delete (req,res) {
         const {id} = req.body
-        const post = await Post.drop({
+        const post = await Post.destroy({
             where:{id:id}
         })
         return res.json(post)
     }
     async update (req,res) {
-        
+        const {text,id} = req.body
+        const post = await Post.update(req.body,{
+            where:{id:id}
+        })
+        return res.json(post)
     }
 }
 

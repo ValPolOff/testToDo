@@ -283,11 +283,11 @@
 }
 
 .inputPage {
-    height: 2%;
-    width: 2%;
+    height: 8%;
+    width: 10%;
     position: absolute;
-    top: 67.5%;
-    right: 21.5%;
+    top: 90%;
+    right: 45%;
     border-radius: 10%;
     background: linear-gradient(0deg, rgba(147, 51, 234, 0.06), rgba(147, 51, 234, 0.06)), linear-gradient(0deg, #F3F3F3, #F3F3F3);
     
@@ -299,7 +299,7 @@
 
 .inputPageTitle {
     position: absolute;
-    top: 65.5%;
-    right: 20.7%;
+    top: 83%;
+    right: 43%;
     font-size: 70%;
 }

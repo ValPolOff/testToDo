@@ -12,7 +12,7 @@ const Post = sequelize.define('post',{
     id:{type:DataTypes.INTEGER, primaryKey:true,autoIncrement:true},
     text:{type:DataTypes.STRING},
     data:{type:DataTypes.STRING},
-    role:{type:DataTypes.BOOLEAN, defaultValue: false},
+    performance:{type:DataTypes.BOOLEAN, defaultValue: false},
 })
 
 /*User.hasOne(Post)
