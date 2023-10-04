@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import s from './Modal.module.css'
 import Image from "next/image";
 import useModal from "@/app/hook/useModal";
+import axios from "axios";
 
 interface ModalType {
     children?: ReactNode;
@@ -74,6 +75,17 @@ export default function ModalSave (props: ModalType) {
         }
       };
 
+      const addNewPost = async (newPost:string) => {
+        try {
+          const response = await axios.post('http://localhost:5000/api/post', {text:newPost})
+          console.log(response.data)
+          console.log(response)
+          return response.data
+        } catch (err:any) {
+          console.error(err.toJSON())
+        }
+      }
+
       return (
         <>
           {props.isOpen && props.value === '1' && (
@@ -84,7 +96,7 @@ export default function ModalSave (props: ModalType) {
                   <div className={s.h1}>Create task</div>
                   <input tabIndex={0} onKeyDown={handleKeyDown} className={s.interTask} placeholder="Enter text..." value={taskN} onChange={(event) => setTask(event.target.value)} autoFocus></input>
                   <div className={s.blockH1}>
-                    <button className={s.save} onClick={() => {props.objTask.map((e)=>e.text).includes(taskN) || taskN.replaceAll(' ','')==='' || taskN.length === 0 ? setErrorText('You did not enter text or such a task already exists') : (pushText(),setErrorText(''),props.toggle(),setTask(''))}}>
+                    <button className={s.save} onClick={() => {props.objTask.map((e)=>e.text).includes(taskN) || taskN.replaceAll(' ','')==='' || taskN.length === 0 ? setErrorText('You did not enter text or such a task already exists') : (pushText(),setErrorText(''),props.toggle(),setTask(''),addNewPost(taskN))}}>
                       <Image alt='okTask' src='Check_ring.svg' width={25} height={25} />
                       Save
                     </button>

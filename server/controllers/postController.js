@@ -3,8 +3,8 @@ const ApiError = require('../error/ApiError')
 
 class PostController {
     async create (req,res) {
-        const {text} = req.body
-        const post = await Post.create({text})
+        const {text,role} = req.body
+        const post = await Post.create({text,role})
         return res.json(post)
     }
     async getAll (req,res) {
@@ -24,6 +24,13 @@ class PostController {
             where:{id:id}
         })
         return res.json(post)
+    }
+    async filterComp (req,res) {
+        const {sort} = req.body
+        //const post;
+        sort === true ? res.json(await Post.findAll({where:{role:true}})) : sort === false ? res.json(await Post.findAll({where:{role:false}})) : res.json(await Post.findAll());
+        
+        //return res.json(post)
     }
 }
 
