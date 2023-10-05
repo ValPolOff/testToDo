@@ -20,7 +20,7 @@ import SortData from "./SortData";
 
 
 export default function Panel() {
-    
+    console.log(new Date().getFullYear().toString() + '-' + (new Date().getUTCMonth()+1).toString() + '-' + new Date().getUTCDate().toString() + 'T'+ new Date().getUTCHours().toString() + '-'+ new Date().getUTCMinutes().toString() + '-' + new Date().getUTCMilliseconds().toString() + 'Z')
     //const [textTask, setTextTask] = useState(['Task']);
     //INITIAL STATE
     const [textTask, setTextTask] = useState([
