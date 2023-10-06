@@ -28,10 +28,10 @@ class PostController {
         return res.json(post)
     }
     async filterComp (req,res) {
-        const {sort} = req.body
+        const {sort} = req.query
         //const post;
-        sort === true ? res.json(await Post.findAll({where:{completed:true}})) : 
-        sort === false ? res.json(await Post.findAll({where:{completed:false}})) : 
+        sort === 'true' ? res.json(await Post.findAll({where:{completed:true}})) : 
+        sort === 'false' ? res.json(await Post.findAll({where:{completed:false}})) : 
         sort === "ASC" ? res.json(await Post.findAll({where:{},order:[["createdAt",'ASC']]})) :
         sort === "DESC" ? res.json(await Post.findAll({where:{},order:[["createdAt",'DESC']]})) :
         sort === "Today" ? res.json(await Post.findAll({
