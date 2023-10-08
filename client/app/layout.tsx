@@ -4,7 +4,8 @@ import type { Metadata } from 'next'
 import Header from './component/Header/Header'
 
 import Panel from './component/panel/Panel'
-
+import { store } from './component/store/store'
+import { Provider } from 'react-redux';
 
 //const inter = Inter({ subsets: ['latin'] })
 
@@ -21,10 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
-        
-        <Panel/>
+        <Provider store={store}>
+          {children}
+          
+          <Panel/>
+          
+          <Header />
+        </Provider>
         </body>
     </html>
   )
